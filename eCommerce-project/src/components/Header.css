@@ -1,0 +1,90 @@
+.header {
+    background-color: rgb(0, 79, 189);
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+}
+
+
+
+
+.search-bar {
+    width: 500px;
+    height: 38px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.search-button {
+    width: 45px;
+    height: 40px;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    flex-shrink: 0;
+}
+.header .middle-section{
+    display: flex;
+}
+.header .right-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+.cart-quantity {
+    position: absolute;
+    right: 40px;
+    top: 2.5px;
+    color: black;
+}
+.cart-link {
+  position: relative;
+}
+.cart-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+.orders-link{
+    text-decoration: none;
+}
+.orders-text{
+    color: white;
+}
+
+.forms {
+    display: flex;
+    align-items: center;
+}
+.sign-in-form a, .log-in-form a{
+    color: white;
+    text-decoration: none;
+}
+.best-link{
+    text-decoration: none;
+    color: red;
+}
+.best-link .best-product{
+    font-size: 30px;
+}
+
+.header .logo {
+    height: 36px;
+    margin-top: 1px;
+}
+
+.header .cart-icon {
+    width: 38px;
+}
