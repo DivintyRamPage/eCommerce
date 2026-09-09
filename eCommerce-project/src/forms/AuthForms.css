@@ -1,0 +1,240 @@
+.auth {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.auth__card {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 40px 36px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.auth__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    color: #6b7280;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.auth__close:hover {
+    background-color: #f3f4f6;
+}
+
+.auth__logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.auth__logo img {
+    height: 28px;
+}
+
+.auth__title {
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+    color: #1a1a1a;
+}
+
+.auth__subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 28px;
+}
+
+.auth__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.auth__field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.auth__field input {
+    height: 44px;
+    padding: 0 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.auth__field input:focus {
+    border-color: #4caf50;
+}
+
+.auth__field input::placeholder {
+    color: #9ca3af;
+}
+
+.auth__error {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    font-size: 13px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+}
+
+.auth__submit {
+    width: 100%;
+    height: 46px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 6px;
+}
+
+.auth__submit:hover {
+    background-color: #429946;
+}
+
+.auth__submit:active {
+    transform: scale(0.98);
+}
+
+.auth__submit:disabled {
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+}
+
+.auth__divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+.auth__switch {
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.auth__switch-link {
+    color: #4caf50;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+.auth__switch-link:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+.logout-modal {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 40px 32px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.logout-modal__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 20px;
+    background-color: #fef2f2;
+    border-radius: 50%;
+}
+
+.logout-modal__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.logout-modal__subtitle {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+.logout-modal__actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.logout-modal__cancel {
+    flex: 1;
+    height: 44px;
+    background-color: #f3f4f6;
+    color: #374151;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.logout-modal__cancel:hover {
+    background-color: #e5e7eb;
+}
+
+.logout-modal__confirm {
+    flex: 1;
+    height: 44px;
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.logout-modal__confirm:hover {
+    background-color: #b91c1c;
+}

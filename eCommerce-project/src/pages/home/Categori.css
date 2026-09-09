@@ -1,0 +1,46 @@
+.category-item{
+    
+}
+.categories-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    margin-top: 60px; /* під фіксований header висотою 60px */
+    background-color: #f8f9fa;
+    overflow-x: auto;
+    scrollbar-width: none; /* сховати скролбар у Firefox */
+}
+.categories-container::-webkit-scrollbar {
+    display: none; /* сховати скролбар у Chrome/Safari */
+}
+.category-item {
+    flex-shrink: 0; /* кнопки не стискаються при нестачі місця, з'являється скрол */
+}
+.category-item button {
+    padding: 9px 20px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 999px; /* форма "таблетки" */
+    background-color: white;
+    color: rgb(33, 33, 33);
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.category-item button:hover {
+    border-color: rgb(0, 7, 214);
+    color: rgb(0, 7, 214);
+}
+.category-item button:active{
+    transform: scale(0.97);
+}
+.category-item button.active {
+    background-color: rgb(0, 7, 214);
+    border-color: rgb(0, 7, 214);
+    color: white;
+}
+.category-item button.active:hover {
+    color: white; /* щоб hover не перебивав активний стан */
+}

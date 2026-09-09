@@ -1,42 +1,52 @@
 import { NavLink } from "react-router"
 import './Header.css'
 
-export function Header() {
+export function Header({ isLoggedIn, userName, onLoginClick, onLogoutClick }) {
+    
     return (
         <div className="header">
             <div className="left-section">
                 <NavLink to='/' className='header-link'>
-                    <img className='logo' src="images/Logo.png" alt="" />
-                    <img className="mobile-logo" src="" alt="" />
+                    <img className='logo' src="images/Logo.png" alt="ShopEasy" />
                 </NavLink>
             </div>
 
             <div className="middle-section">
                 <input className='search-bar' type="text" name="" id="" />
-
                 <button className="search-button">
-                    <img className='search-icon' src="images/icon/search-icon.png" alt="" />
+                    <img className='search-icon' src="images/icons/search-icon.png" alt="" />
                 </button>
             </div>
 
             <div className="right-section">
-                <NavLink className='orders-link header-link' to='/orders'>
-                    <span className="orders-text">Orders</span>
+                {isLoggedIn ? (
+                    <div className='two-tier header-link' onClick={onLogoutClick}>
+                        <span className="two-tier__label">Привіт, {userName}</span>
+                        <span className="two-tier__value">Вийти</span>
+                    </div>
+                ) : (
+                    <div className='two-tier header-link' onClick={onLoginClick}>
+                        <span className="two-tier__label">Привіт, гостю</span>
+                        <span className="two-tier__value">Увійти</span>
+                    </div>
+                )}
+
+                <NavLink className='two-tier header-link orders-link' to='/orders'>
+                    <span className="two-tier__label">Мої</span>
+                    <span className="two-tier__value">Замовлення</span>
                 </NavLink>
 
-                <NavLink className='cart-link'>
-                    <img className="cart-icon" src="images/icons/cart-icon.png" />
-                    <div className="cart-quantity">3</div>
-                    <div className="cart-text">Cart</div>
-                </NavLink>
-                <NavLink className='best-link'>
+                <NavLink className='best-link' to='/wishlist'>
                     <div className="best-product">♥</div>
                 </NavLink>
 
-                <div className="forms">
-                    <div className="sign-in-form"> <a href="">Sign in/</a></div>
-                    <div className="log-in-form"> <a href="">Log in</a></div>
-                </div>
+                <NavLink className='cart-link' to='/cart'>
+                    <span className="cart-icon-wrapper">
+                        <img className="cart-icon" src="images/icons/cart-icon.png" alt="Кошик" />
+                        <div className="cart-quantity">3</div>
+                    </span>
+                    <span className="cart-text">Кошик</span>
+                </NavLink>
             </div>
         </div>
     )
