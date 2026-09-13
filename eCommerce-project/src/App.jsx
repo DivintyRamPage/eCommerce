@@ -4,11 +4,14 @@ import { CheckoutPage } from './pages/checkout/CheckoutPage'
 import { LoginForm } from './forms/LoginForm'
 import { SignUpForm } from './forms/SignUpForm'
 import { Routes, Route } from 'react-router'
+import { OrdersPage } from './pages/orders/OrdersPage'
+import axios from 'axios'
 import './index.css'
 
 function App() {
     const [authMode, setAuthMode] = useState(null)
     const [user, setUser] = useState(null);
+    const [cart, setCart] = useState(null)
 
     useEffect(() => {
         const savedToken = localStorage.getItem('token');
@@ -17,6 +20,27 @@ function App() {
             setUser(JSON.parse(savedUser))
         }
     }, []);
+
+    const loadCart = async () => {
+        if (!user) return;
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.get("/api/cart", {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            setCart(response.data);
+        } catch (err) {
+            console.error("Не вдалося завантажити кошик", err);
+        }
+    };
+
+    useEffect(() => {
+        if (user) {
+            loadCart();
+        } else {
+            setCart(null);
+        }
+    }, [user]);
 
     function handleLoginSuccess(LoggedIn) {
         setUser(LoggedIn);
@@ -35,6 +59,8 @@ function App() {
                     path='/'
                     element={
                         <HomePage
+                            cart={cart}
+                            loadCart={loadCart}
                             isLoggedIn={!!user}
                             userName={user?.name}
                             onLoginClick={() => setAuthMode('login')}
@@ -48,6 +74,20 @@ function App() {
                     path='/cart'
                     element={
                         <CheckoutPage
+                            cart={cart}
+                            loadCart={loadCart}
+                            isLoggedIn={!!user}
+                            userName={user?.name}
+                            onLoginClick={() => setAuthMode('login')}
+                            onLogoutClick={handleLogout}
+                        />
+                    }
+                /><Route
+                    path='/orders'
+                    element={
+                        <OrdersPage
+                            cart={cart}
+                            loadCart={loadCart}
                             isLoggedIn={!!user}
                             userName={user?.name}
                             onLoginClick={() => setAuthMode('login')}

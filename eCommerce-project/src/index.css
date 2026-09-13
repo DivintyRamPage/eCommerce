@@ -117,9 +117,16 @@
 }
 .best-product-homepage {
   font-size: 32px;     
-  color: blue;
+  color: rgb(177, 177, 180);
   line-height: 1;      
-  cursor: pointer;     
+  cursor: pointer;  
+  transition: color 0.2s ease, transform 0.15s ease;   
+}
+.best-product-homepage.acti{
+  color: red;
+}
+.best-product-homepage:active {
+    transform: scale(1.2);
 }
 .home-page .product-spacer {
   flex: 1;

@@ -1,0 +1,130 @@
+.orders-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 100px 20px 60px;
+}
+
+.orders-page--centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50vh;
+    gap: 16px;
+}
+
+.orders-page--centered p {
+    font-size: 18px;
+    color: rgb(120, 120, 120);
+    margin: 0;
+}
+
+.orders-empty-icon {
+    font-size: 64px;
+    opacity: 0.4;
+}
+
+.orders-error {
+    color: #dc2626;
+}
+
+.orders-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.order-card {
+    background-color: white;
+    border: 1px solid rgb(230, 230, 230);
+    border-radius: 12px;
+    padding: 18px 20px;
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.order-card-id {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 0 4px;
+}
+
+.order-card-date {
+    font-size: 13px;
+    color: rgb(140, 140, 140);
+    margin: 0;
+}
+
+.order-status {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.order-status--pending {
+    background-color: rgb(255, 244, 214);
+    color: rgb(146, 100, 6);
+}
+
+.order-status--completed {
+    background-color: rgb(212, 245, 224);
+    color: rgb(25, 135, 84);
+}
+
+.order-status--cancelled {
+    background-color: rgb(254, 226, 226);
+    color: rgb(220, 38, 38);
+}
+
+.order-card-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.order-item-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.order-item-name {
+    color: rgb(60, 60, 60);
+}
+
+.order-item-qty {
+    color: rgb(150, 150, 150);
+}
+
+.order-card-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgb(240, 240, 240);
+}
+
+@media (max-width: 600px) {
+    .order-card-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+}

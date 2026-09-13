@@ -1,8 +1,14 @@
 import { NavLink } from "react-router"
 import './Header.css'
 
-export function Header({ isLoggedIn, userName, onLoginClick, onLogoutClick }) {
-    
+export function Header({ isLoggedIn, userName, onLoginClick, onLogoutClick, cart }) {
+
+    let totalQuantity = 0;
+
+    cart.forEach((cartItem) => {
+        totalQuantity += cartItem.quantity
+    })
+
     return (
         <div className="header">
             <div className="left-section">
@@ -43,7 +49,7 @@ export function Header({ isLoggedIn, userName, onLoginClick, onLogoutClick }) {
                 <NavLink className='cart-link' to='/cart'>
                     <span className="cart-icon-wrapper">
                         <img className="cart-icon" src="images/icons/cart-icon.png" alt="Кошик" />
-                        <div className="cart-quantity">3</div>
+                        <div className="cart-quantity">{totalQuantity}</div>
                     </span>
                     <span className="cart-text">Кошик</span>
                 </NavLink>

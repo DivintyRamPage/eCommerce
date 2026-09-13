@@ -2,10 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import { formatMoney } from "../../utils/money";
 
-export function Product({ product, isLoggedIn, onLoginRequired }) {
+export function Product({ product, isLoggedIn, onLoginRequired, loadCart }) {
     const [quantity, setQuantity] = useState(1);
     const [added, setAdded] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [favorite, setFavorite] = useState(false)
 
     async function addToCart() {
         if (!isLoggedIn) {
@@ -24,7 +25,7 @@ export function Product({ product, isLoggedIn, onLoginRequired }) {
                     Authorization: `Bearer ${token}`
                 }
             });
-
+            loadCart()
             setAdded(true);
 
             setTimeout(() => {
@@ -32,18 +33,14 @@ export function Product({ product, isLoggedIn, onLoginRequired }) {
             }, 2000);
         } catch (err) {
             alert(err.response?.data?.error || "Не вдалося додати товар")
-        }   finally {
+        } finally {
             setLoading(false)
         }
-        
-
-        
-
-       
-
     }
 
-
+    const addToWishList = () => {
+        setFavorite(!favorite)
+    }
 
     const selectQuantity = (event) => {
         const quantitySelected = Number(event.target.value);
@@ -85,7 +82,7 @@ export function Product({ product, isLoggedIn, onLoginRequired }) {
                     <option value="9">9</option>
                     <option value="10">10</option>
                 </select>
-                <div className="best-product-homepage">♥</div>
+                <div className={`best-product-homepage ${favorite ? 'acti' : ''}`} onClick={addToWishList}>♥</div>
             </div>
 
 

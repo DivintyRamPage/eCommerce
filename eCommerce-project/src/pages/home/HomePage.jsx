@@ -5,7 +5,7 @@ import { Category } from "./Categori";
 import './HomePage.css'
 import axios from 'axios'
 
-export function HomePage({ isLoggedIn, userName, onLoginClick, onLogoutClick }) {
+export function HomePage({ isLoggedIn, userName, onLoginClick, onLogoutClick, cart, loadCart }) {
     const [products, setProduct] = useState([]);
     const [category, setCategory] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null)
@@ -34,12 +34,13 @@ export function HomePage({ isLoggedIn, userName, onLoginClick, onLogoutClick }) 
 
     return (
         <>
-            <Header isLoggedIn={isLoggedIn} onLoginClick={onLoginClick} userName={userName} onLogoutClick={onLogoutClick} />
+            <Header isLoggedIn={isLoggedIn} onLoginClick={onLoginClick} userName={userName} onLogoutClick={onLogoutClick} cart={cart?.items || []} />
 
             <Category category={category} selected={selectedCategory} onSelect={setSelectedCategory} />
 
             <div className="home-page">
                 <ProductGrid
+                    loadCart={loadCart}
                     products={products}
                     isLoggedIn={isLoggedIn}
                     onLoginRequired={onLoginClick}
