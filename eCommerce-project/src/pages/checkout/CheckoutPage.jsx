@@ -34,11 +34,20 @@ export function CheckoutPage({ isLoggedIn, userName, onLoginClick, onLogoutClick
     const navigate = useNavigate()
 
     const createOrder = async () => {
-        await axios.post(`/api/orders`);
+        try {
+            const token = localStorage.getItem('token')
+            await axios.post(`/api/orders`, {}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
 
-        await loadCart();
+            await loadCart();
 
-        navigate('/orders')
+            navigate('/orders')
+        } catch (error){
+            alert(error.response?.data?.error || 'Не вдалося оформити замовлення')
+        }
     }
 
     /*useEffect(() => {
@@ -69,9 +78,9 @@ export function CheckoutPage({ isLoggedIn, userName, onLoginClick, onLogoutClick
                     </div>
                 )}
 
-             
 
-                 
+
+
 
                 {isLoggedIn && (!cart?.items || cart.items.length === 0) && (
                     <div className="cart-page--centered">
@@ -101,14 +110,14 @@ export function CheckoutPage({ isLoggedIn, userName, onLoginClick, onLogoutClick
                                             </p>
                                         </div>
                                         <div className="cart-item-quantity">
-                                            <button 
+                                            <button
                                                 onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
                                                 disabled={item.quantity <= 1}
                                             >−</button>
                                             <span>{item.quantity}</span>
                                             <button onClick={() => {
                                                 updateQuantity(item.cartItemId, item.quantity + 1)
-                                                
+
                                             }}>+</button>
                                         </div>
                                         <div className="cart-item-total">
