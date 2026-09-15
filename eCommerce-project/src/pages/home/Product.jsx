@@ -38,7 +38,13 @@ export function Product({ product, isLoggedIn, onLoginRequired, loadCart }) {
         }
     }
 
-    const addToWishList = () => {
+    const addToWishList = async() => {
+        const token = localStorage.getItem('token')
+        await axios.post('/api/wishlist', { productId: product.id }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
         setFavorite(!favorite)
     }
 
@@ -59,7 +65,7 @@ export function Product({ product, isLoggedIn, onLoginRequired, loadCart }) {
             </div>
 
             <div className="product-rating-container">
-                <p>Rating: </p>
+                <p>Rating: ★</p>
                 <div className="product-rating-count link-primary">
                     {product.rating}
                 </div>

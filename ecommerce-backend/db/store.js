@@ -15,6 +15,7 @@ function emptyData() {
     cartItems: [],
     orders: [],
     orderItems: [],
+    wishlistItems: [],
   };
 }
 
@@ -23,7 +24,12 @@ function loadDb() {
     fs.writeFileSync(DB_PATH, JSON.stringify(emptyData(), null, 2));
   }
   const raw = fs.readFileSync(DB_PATH, 'utf-8');
-  return JSON.parse(raw);
+  const parsed = JSON.parse(raw);
+
+  // Міграція: якщо db.json був створений до появи нової колекції
+  // (наприклад, wishlistItems), додаємо її як порожній масив, не чіпаючи решту даних.
+  const withDefaults = { ...emptyData(), ...parsed };
+  return withDefaults;
 }
 
 const data = loadDb();

@@ -5,6 +5,7 @@ import { LoginForm } from './forms/LoginForm'
 import { SignUpForm } from './forms/SignUpForm'
 import { Routes, Route } from 'react-router'
 import { OrdersPage } from './pages/orders/OrdersPage'
+import { WishlistPage } from './pages/wishlist/WishlistPage'
 import axios from 'axios'
 import './index.css'
 
@@ -82,7 +83,8 @@ function App() {
                             onLogoutClick={handleLogout}
                         />
                     }
-                /><Route
+                />
+                <Route
                     path='/orders'
                     element={
                         <OrdersPage
@@ -94,7 +96,20 @@ function App() {
                             onLogoutClick={handleLogout}
                         />
                     }
+                /><Route
+                    path='/wishlist'
+                    element={
+                        <WishlistPage
+                            cart={cart}
+                            loadCart={loadCart}
+                            isLoggedIn={!!user}
+                            userName={user?.name}
+                            onLoginClick={() => setAuthMode('login')}
+                            onLogoutClick={handleLogout}
+                        />
+                    }
                 />
+
             </Routes>
 
             {authMode === 'login' && (
