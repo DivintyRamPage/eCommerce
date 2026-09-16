@@ -1,5 +1,6 @@
 import { Header } from "../../components/Header";
-import { formatMoney } from "../../utils/money";
+import { CartSummary } from "./components/CartSummary";
+import { CartItem } from "./components/CartItem";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import "./CheckoutPage.css";
@@ -45,7 +46,7 @@ export function CheckoutPage({ isLoggedIn, userName, onLoginClick, onLogoutClick
             await loadCart();
 
             navigate('/orders')
-        } catch (error){
+        } catch (error) {
             alert(error.response?.data?.error || 'Не вдалося оформити замовлення')
         }
     }
@@ -97,58 +98,22 @@ export function CheckoutPage({ isLoggedIn, userName, onLoginClick, onLogoutClick
                         <div className="cart-layout">
                             <div className="cart-items">
                                 {cart.items.map((item) => (
-                                    <div className="cart-item" key={item.cartItemId}>
-                                        <img
-                                            className="cart-item-image"
-                                            src={item.product.images[0]}
-                                            alt={item.product.name}
-                                        />
-                                        <div className="cart-item-info">
-                                            <p className="cart-item-name">{item.product.name}</p>
-                                            <p className="cart-item-price">
-                                                {formatMoney(item.product.discountPrice ?? item.product.price)} за шт.
-                                            </p>
-                                        </div>
-                                        <div className="cart-item-quantity">
-                                            <button
-                                                onClick={() => updateQuantity(item.cartItemId, item.quantity - 1)}
-                                                disabled={item.quantity <= 1}
-                                            >−</button>
-                                            <span>{item.quantity}</span>
-                                            <button onClick={() => {
-                                                updateQuantity(item.cartItemId, item.quantity + 1)
-
-                                            }}>+</button>
-                                        </div>
-                                        <div className="cart-item-total">
-                                            {formatMoney((item.product.discountPrice ?? item.product.price) * item.quantity)}
-                                        </div>
-                                        <button className="cart-item-remove" onClick={() => {
-                                            deleteProduct(item.cartItemId)
-                                        }}>🗑</button>
-                                    </div>
+                                    <CartItem
+                                        key={item.cartItemId}
+                                        item={item}
+                                        onIncrease={updateQuantity}
+                                        onDecrease={updateQuantity}
+                                        onRemove={deleteProduct}
+                                    />
                                 ))}
                             </div>
 
-                            <div className="cart-summary">
-                                <p className="cart-summary-title">Разом до сплати</p>
-                                <div className="cart-summary-row">
-                                    <span>Товари ({cart.items.length})</span>
-                                    <span>{formatMoney(cart.total)}</span>
-                                </div>
-                                <div className="cart-summary-row">
-                                    <span>Доставка</span>
-                                    <span className="cart-summary-free">Безкоштовно</span>
-                                </div>
-                                <div className="cart-summary-divider"></div>
-                                <div className="cart-summary-row cart-summary-row--total">
-                                    <span>До сплати</span>
-                                    <span>{formatMoney(cart.total)}</span>
-                                </div>
-                                <button className="cart-checkout-button button-primary" onClick={createOrder}>
-                                    Оформити замовлення
-                                </button>
-                            </div>
+                            <CartSummary
+                                itemsCount={cart.items.length}
+                                total={cart.total}
+                                onCheckout={createOrder}
+                            />
+
                         </div>
 
                     </>
