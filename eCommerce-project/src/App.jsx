@@ -54,6 +54,7 @@ function App() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         setUser(null);
+        setLoggedOut(false)
     }
     return (
         <>
