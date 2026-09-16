@@ -14,7 +14,7 @@ export function CheckoutPage({ isLoggedIn, userName, onLoginClick, onLogoutClick
                 headers: { Authorization: `Bearer ${token}` }
             })
             loadCart()
-        } catch (error) {
+        } catch {
             alert('Не вдалося оновити кількість')
         }
     }
@@ -26,7 +26,7 @@ export function CheckoutPage({ isLoggedIn, userName, onLoginClick, onLogoutClick
                 headers: { Authorization: `Bearer ${token}` }
             })
             loadCart()
-        } catch (error) {
+        } catch {
             alert('Не вдалося видалити товар')
         }
     }

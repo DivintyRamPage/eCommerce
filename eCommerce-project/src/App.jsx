@@ -6,6 +6,7 @@ import { SignUpForm } from './forms/SignUpForm'
 import { Routes, Route } from 'react-router'
 import { OrdersPage } from './pages/orders/OrdersPage'
 import { WishlistPage } from './pages/wishlist/WishlistPage'
+import { LogoutModal } from './forms/LogOutForm'
 import axios from 'axios'
 import './index.css'
 
@@ -13,6 +14,7 @@ function App() {
     const [authMode, setAuthMode] = useState(null)
     const [user, setUser] = useState(null);
     const [cart, setCart] = useState(null)
+    const [loggedOut, setLoggedOut] = useState(false)
 
     useEffect(() => {
         const savedToken = localStorage.getItem('token');
@@ -65,7 +67,7 @@ function App() {
                             isLoggedIn={!!user}
                             userName={user?.name}
                             onLoginClick={() => setAuthMode('login')}
-                            onLogoutClick={handleLogout}
+                            onLogoutClick={() => setLoggedOut(true)}
                         />
                     }
                 >
@@ -80,7 +82,7 @@ function App() {
                             isLoggedIn={!!user}
                             userName={user?.name}
                             onLoginClick={() => setAuthMode('login')}
-                            onLogoutClick={handleLogout}
+                            onLogoutClick={() => setLoggedOut(true)}
                         />
                     }
                 />
@@ -93,7 +95,7 @@ function App() {
                             isLoggedIn={!!user}
                             userName={user?.name}
                             onLoginClick={() => setAuthMode('login')}
-                            onLogoutClick={handleLogout}
+                            onLogoutClick={() => setLoggedOut(true)}
                         />
                     }
                 /><Route
@@ -105,7 +107,7 @@ function App() {
                             isLoggedIn={!!user}
                             userName={user?.name}
                             onLoginClick={() => setAuthMode('login')}
-                            onLogoutClick={handleLogout}
+                            onLogoutClick={() => setLoggedOut(true)}
                         />
                     }
                 />
@@ -127,91 +129,14 @@ function App() {
                     onClose={() => setAuthMode(null)}
                 />
             )}
+            {loggedOut && (
+                <LogoutModal
+                    onConfirm={handleLogout} onCancel={() => setLoggedOut(false)}
+                />
+            )}
         </>
 
     )
 }
 
 export default App
-
-
-/*import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router";
-import { HomePage } from "./pages/home/HomePage";
-import { CartPage } from "./pages/cart/CartPage";
-import { LoginForm } from "./forms/LoginForm";
-import { SignUpForm } from "./forms/SignUpForm";
-import "./index.css";
-
-function App() {
-    const [user, setUser] = useState(null);
-    const [authView, setAuthView] = useState(null); // null | 'login' | 'signup'
-
-    // При завантаженні сторінки перевіряємо, чи юзер вже логінений раніше
-    useEffect(() => {
-        const savedUser = localStorage.getItem("user");
-        const savedToken = localStorage.getItem("token");
-        if (savedUser && savedToken) {
-            setUser(JSON.parse(savedUser));
-        }
-    }, []);
-
-    function handleLoginSuccess(loggedInUser) {
-        setUser(loggedInUser);
-        setAuthView(null);
-    }
-
-    function handleLogout() {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        setUser(null);
-    }
-
-    return (
-        <>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <HomePage
-                            isLoggedIn={!!user}
-                            userName={user?.name}
-                            onLoginClick={() => setAuthView("login")}
-                            onLogoutClick={handleLogout}
-                        />
-                    }
-                />
-                <Route
-                    path="/cart"
-                    element={
-                        <CartPage
-                            isLoggedIn={!!user}
-                            userName={user?.name}
-                            onLoginClick={() => setAuthView("login")}
-                            onLogoutClick={handleLogout}
-                        />
-                    }
-                />
-            </Routes>
-
-            {/* Модалки авторизації рендеряться ПОЗА Routes — не прив'язані до конкретної сторінки }
-            {authView === "login" && (
-                <LoginForm
-                    onClose={() => setAuthView(null)}
-                    onSwitchToSignUp={() => setAuthView("signup")}
-                    onLoginSuccess={handleLoginSuccess}
-                />
-            )}
-
-            {authView === "signup" && (
-                <SignUpForm
-                    onClose={() => setAuthView(null)}
-                    onSwitchToLogin={() => setAuthView("login")}
-                    onLoginSuccess={handleLoginSuccess}
-                />
-            )}
-        </>
-    );
-}
-
-export default App*/
