@@ -4,7 +4,7 @@ import { formatMoney } from "../../utils/money";
 import axios from "axios";
 import "./WishlistPage.css";
 
-export function WishlistPage({ isLoggedIn, userName, onLoginClick, onLogoutClick, cart, loadCart }) {
+export function WishlistPage({ isLoggedIn, userName, onLoginClick, onLogoutClick, cart }) {
     const [wishlist, setWishlist] = useState([]);
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
