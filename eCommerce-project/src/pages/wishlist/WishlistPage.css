@@ -30,6 +30,7 @@
     gap: 16px;
 }
 .wishlist-card {
+    position: relative;
     background-color: white;
     border: 1px solid rgb(230, 230, 230);
     border-radius: 12px;

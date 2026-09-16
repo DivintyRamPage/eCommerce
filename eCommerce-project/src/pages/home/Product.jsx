@@ -39,6 +39,10 @@ export function Product({ product, isLoggedIn, onLoginRequired, loadCart }) {
     }
 
     const addToWishList = async() => {
+        if (!isLoggedIn) {
+            onLoginRequired();
+            return
+        }
         const token = localStorage.getItem('token')
         await axios.post('/api/wishlist', { productId: product.id }, {
             headers: {

@@ -1,4 +1,5 @@
 .header {
+    z-index: 3;
     background-color: rgb(0, 79, 189);
     color: white;
     padding-left: 15px;
@@ -20,7 +21,7 @@
     margin-top: 1px;
 }
 
-/* --- Центральна секція: пошук більше не розтягується на весь простір --- */
+
 .header .middle-section {
     display: flex;
     flex: 1;
@@ -30,7 +31,7 @@
 
 .search-bar {
     flex: 1;
-    width: auto; /* більше не фіксована 700px */
+    width: auto; 
     height: 38px;
     border: none;
     border-top-left-radius: 5px;
@@ -48,7 +49,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffb800; /* акцентна кнопка, а не білий фон */
+    background-color: #ffb800; 
     cursor: pointer;
 }
 
@@ -57,10 +58,10 @@
     height: 22px;
 }
 
-/* --- Права секція: більше повітря + дворядкова ієрархія --- */
+
 .header .right-section {
     display: flex;
-    gap: 40px; /* було 20px */
+    gap: 40px; 
     align-items: center;
     flex-shrink: 0;
 }
@@ -70,7 +71,7 @@
     color: white;
 }
 
-/* Дворядковий блок (Sign in / Orders) — маленький підпис зверху, жирний текст знизу */
+
 .two-tier {
     display: flex;
     flex-direction: column;
@@ -93,7 +94,7 @@
     text-decoration: none;
 }
 
-/* --- Кошик: бейдж прив'язаний до іконки, а не до всього блоку --- */
+
 .cart-link {
     position: relative;
     display: flex;
@@ -135,7 +136,6 @@
     font-weight: 500;
 }
 
-/* --- Обране: жовтий колір замість червоного (щоб не читалось як помилка) --- */
 .best-link {
     text-decoration: none;
     color: #ffd166;
@@ -145,16 +145,16 @@
     font-size: 24px;
 }
 
-/* --- Адаптив --- */
+
 @media (max-width: 900px) {
     .header .middle-section {
-        display: none; /* або винести пошук окремим рядком під хедер */
+        display: none; 
     }
 
     .cart-text,
     .orders-text,
     .two-tier__label {
-        display: none; /* лишаємо тільки іконки на малих екранах */
+        display: none; 
     }
 
     .header .right-section {

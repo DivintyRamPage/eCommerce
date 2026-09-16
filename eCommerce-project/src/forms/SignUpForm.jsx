@@ -43,7 +43,7 @@ export function SignUpForm({ onClose, onSwitchToLogIn, onSuccess }) {
 
                 <button className="auth__close" onClick={onClose}>×</button>
                 <div className="auth__logo">
-                    <img src="/Logo.png" alt="Nexcent" />
+                    <img src="/images/Logo.png" />
                 </div>
 
                 <h2 className="auth__title">Створити акаунт</h2>
